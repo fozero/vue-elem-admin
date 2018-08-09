@@ -1,6 +1,6 @@
-# feluis
+# vue-elem-admin
 
-> A Vue.js project
+> 基于vue+elementUI搭建的后台管理系统
 
 ## Build Setup
 
