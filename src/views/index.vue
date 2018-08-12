@@ -3,8 +3,9 @@
         <el-header>
            <el-col :span="24" style="height: 60px;line-height: 60px;">
                 <el-col :span="12" style="font-size:26px;    ">
-                    <img src="../assets/logo.png" class="logo">
+                    <!-- <img src="../assets/logo.png" class="logo"> -->
                     <span style="padding-left:20px;color:#fff">vue-elem-admin<i style="color:#20a0ff"></i></span>
+                    <i class="fa fa-navicon" style="cursor:pointer;" @click="menuShow"></i>
                 </el-col>
                 <el-col :span="12" style="text-align:right">
                     <span class="admin-text"><i class="fa fa-user" aria-hidden="true" style="margin-right:5px;"></i>欢迎：admin</span>
@@ -65,10 +66,14 @@ export default {
     components:{
         sysMenu:{
         name:'sysMenu',
-        template:`<div><el-submenu :index="value.id" :key="value.id" v-if="value.sub.length>0" v-for="(value,index) in list_data">
+        template:`<div>
+                <el-submenu :index="value.id" :key="value.id" v-if="value.sub.length>0" v-for="(value,index) in list_data">
                     <template slot="title" ><i class="el-icon-menu"></i>{{value.menu_name}}</template>
                     <sys-menu :list_data="value.sub" v-if="value.sub.length>0"></sys-menu>
-                </el-submenu><el-menu-item v-for="(value,index) in list_data" v-if="value.sub.length==0" :key="value.flag" :index="value.flag" :route="{name:value.flag}"><i class="el-icon-tickets"></i>{{value.menu_name}}</el-menu-item></div>`,
+                </el-submenu>
+                <el-menu-item v-for="(value,index) in list_data" v-if="value.sub.length==0" :key="value.flag" :index="value.flag" :route="{name:value.flag}">
+                        <i class="el-icon-tickets"></i>{{value.menu_name}}</el-menu-item>
+                </div>`,
         props:['list_data'],
         data(){
             return {};
@@ -88,6 +93,9 @@ export default {
         ])
     },
     methods: {
+        menuShow(){
+            this.isCollapse=!this.isCollapse;
+        },
         update_pwd(){
 
         },
